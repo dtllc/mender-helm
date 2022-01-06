@@ -81,6 +81,8 @@ deployments:
   env:
     DEPLOYMENTS_MIDDLEWARE: prod
     DEPLOYMENTS_PRESIGN_SECRET: ""
+  additionalVolumes: []
+  additionalVolumeMounts: []
 
 device_auth:
   enabled: true

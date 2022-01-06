@@ -57,6 +57,10 @@ spec:
 {{- else -}}
         args: ["server"]
 {{- end }}
+        {{- if .Values.deployments.additionalVolumeMounts }}
+        volumeMounts:
+          {{- toYaml .Values.deployments.additionalVolumeMounts | nindent 10 }}
+        {{- end }}
 
         # Readiness/liveness probes
         readinessProbe:
@@ -101,6 +105,10 @@ spec:
         - prefix: DEPLOYMENTS_
           secretRef:
             name: s3-artifacts
+      {{- if .Values.deployments.additionalVolumes }}
+      volumes:
+        {{- toYaml .Values.deployments.additionalVolumes | nindent 6 }}
+      {{- end }}
 
 {{- if .Values.global.image.username }}
       imagePullSecrets:
